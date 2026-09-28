@@ -1,75 +1,68 @@
 import { useEffect, useRef } from 'react'
+import { AD_SLOTS } from '../config/ads'
+
+// Returns true when viewport width ≤ 728 px (i.e. phone / small tablet)
+function isMobile() {
+  return typeof window !== 'undefined' && window.innerWidth <= 728
+}
 
 /**
  * Adsterra banner ad slot.
  *
- * How to use:
- *   1. In Adsterra dashboard create a "Display Banner" zone.
- *   2. Copy the numeric Zone Key from the code Adsterra gives you.
- *      Example code from Adsterra:
- *        <script type="text/javascript">
- *          atOptions = { 'key': '1a2b3c4d5e...', 'format': 'iframe', 'height': 90, 'width': 728, 'params': {} };
- *        </script>
- *        <script type="text/javascript" src="//www.highperformanceformat.com/1a2b3c4d5e.../invoke.js"></script>
- *      The KEY is the long hex string: '1a2b3c4d5e...'
- *
- *   3. Place the component anywhere in your JSX:
- *        <AdSlot zoneKey="1a2b3c4d5e..." width={728} height={90} />
- *        <AdSlot zoneKey="1a2b3c4d5e..." width={300} height={250} />
- *
  * Props:
- *   zoneKey  — the Adsterra zone key string (required)
- *   width    — ad width in px  (default 728)
- *   height   — ad height in px (default 90)
+ *   slot      — key from AD_SLOTS in src/config/ads.js  (required)
+ *   className — extra CSS class(es) on the wrapper div
+ *
+ * To activate: fill in the `key` for this slot in src/config/ads.js
  */
-export function AdSlot({ zoneKey, width = 728, height = 90, className = '' }) {
+export function AdSlot({ slot, className = '' }) {
   const container = useRef(null)
+  const cfg = AD_SLOTS[slot]
+
+  // Pick desktop or mobile size
+  const mobile = isMobile()
+  const width  = (mobile && cfg?.mw) ? cfg.mw : cfg?.w ?? 728
+  const height = (mobile && cfg?.mh) ? cfg.mh : cfg?.h ?? 90
+  const key    = cfg?.key ?? ''
 
   useEffect(() => {
-    if (!zoneKey || !container.current) return
+    if (!key || !container.current) return
 
     // Clear any previous render (React StrictMode / hot-reload safety)
     container.current.innerHTML = ''
 
-    // Inject atOptions config script
-    const cfg = document.createElement('script')
-    cfg.type = 'text/javascript'
-    cfg.text = `atOptions = { 'key': '${zoneKey}', 'format': 'iframe', 'height': ${height}, 'width': ${width}, 'params': {} };`
-    container.current.appendChild(cfg)
+    // 1. Inject atOptions config
+    const optScript = document.createElement('script')
+    optScript.type = 'text/javascript'
+    optScript.text = `atOptions = { 'key': '${key}', 'format': 'iframe', 'height': ${height}, 'width': ${width}, 'params': {} };`
+    container.current.appendChild(optScript)
 
-    // Inject the invoke.js loader script
-    const loader = document.createElement('script')
-    loader.type = 'text/javascript'
-    loader.src  = `//www.highperformanceformat.com/${zoneKey}/invoke.js`
-    container.current.appendChild(loader)
+    // 2. Inject Adsterra invoke.js loader
+    const loaderScript = document.createElement('script')
+    loaderScript.type = 'text/javascript'
+    loaderScript.src  = `//www.highperformanceformat.com/${key}/invoke.js`
+    container.current.appendChild(loaderScript)
 
     return () => {
       if (container.current) container.current.innerHTML = ''
     }
-  }, [zoneKey, width, height])
+  }, [key, width, height])
 
-  // Show a placeholder box when no key is configured yet
-  if (!zoneKey) {
+  // No key configured — show a placeholder so layout is preserved
+  if (!key) {
     return (
       <div
-        className={className}
-        style={{
-          width, height,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: 'transparent', border: '1px dashed #444',
-          color: '#666', fontSize: 12, boxSizing: 'border-box',
-        }}
+        className={`ad-placeholder ${className}`}
+        style={{ width, height, boxSizing: 'border-box' }}
         aria-hidden="true"
-      >
-        Ad {width}×{height}
-      </div>
+      />
     )
   }
 
   return (
     <div
       ref={container}
-      className={className}
+      className={`ad-slot ${className}`}
       style={{ width, height, overflow: 'hidden', display: 'block' }}
     />
   )

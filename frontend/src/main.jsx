@@ -5,6 +5,7 @@ import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
 import { Dashboard } from './views/Dashboard'
 import { TroubleshootingPortal } from './views/TroubleshootingPortal'
+import { AdSocialBar } from './components/AdSocialBar'
 import './styles.css'
 
 function parseRoute() {
@@ -47,6 +48,7 @@ function App() {
 
   return (
     <AppProvider>
+      <AdSocialBar />
       <Nav route={route} setPage={setPage} search={search} setSearch={setSearch} />
       {route.page === 'diagnostics'
         ? <TroubleshootingPortal onBack={() => setPage('home')} />

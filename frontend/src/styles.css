@@ -183,6 +183,13 @@ h1 em,h2 em{font-style:italic;color:var(--accent)}
 /* ── Home page spacing ── */
 .home-page .catalog{margin-top:30px}
 
+/* ── Ad slots ── */
+.ad-slot,.ad-placeholder{display:flex;justify-content:center;align-items:center;margin:18px auto;max-width:100%}
+.ad-placeholder{background:transparent;border:none}
+.ad-home-top,.ad-home-bottom,.ad-top{margin:10px auto 18px}
+.ad-infeed{margin:24px auto}
+.ad-mid{margin:20px auto}
+
 @media(max-width:760px){
   .cat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .horiz-card{width:110px}

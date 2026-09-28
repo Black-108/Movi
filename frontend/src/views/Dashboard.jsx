@@ -234,6 +234,7 @@ export function Dashboard({ route, search, setSearch, onOpenTitle, onOpenCategor
     return (
       <main className="page">
         {error && <DataAlert text={error} />}
+        <AdSlot slot="SLOT_CATEGORY_TOP" className="ad-top" />
         <section className="collection-head">
           <div>
             <span className="eyebrow">Collection</span>
