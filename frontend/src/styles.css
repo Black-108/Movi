@@ -101,20 +101,14 @@ h1 em,h2 em{font-style:italic;color:var(--accent)}
   .footer-inner,.footer-links{flex-direction:column;align-items:flex-start}.loading-page{min-height:55vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}.loading-page h1{margin:9px 0}.loading-page p{color:var(--muted);font-size:13px}.data-alert{align-items:flex-start;flex-direction:column}.data-alert code{margin-left:0}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
-
-/* ── Mode toggle (Movie / Series / Anime) ──────────────────── */
 .mode-toggle{display:flex;align-items:center;gap:2px;background:var(--surface2);border-radius:8px;padding:3px;flex-shrink:0}
 .mode-btn{border:0;background:transparent;color:var(--muted);padding:7px 11px;border-radius:6px;font-size:12px;font-weight:500;transition:background .15s,color .15s;white-space:nowrap}
 .mode-btn:hover{color:var(--ink);background:color-mix(in srgb,var(--surface2) 50%,var(--ink) 8%)}
 .mode-btn.active{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px #0003}
 .search-clear{border:0;background:transparent;color:var(--muted);font-size:18px;padding:0 4px}
-
-/* ── Source & type badges ──────────────────────────────────── */
 .type-badge{position:absolute;z-index:2;top:8px;right:8px;background:var(--accent);color:#15170f;border-radius:4px;padding:3px 5px;font:700 11px var(--sans);line-height:1}
 .source-badge{position:absolute;z-index:2;bottom:8px;left:8px;background:#090a0bc9;color:#ccc;border-radius:4px;padding:3px 6px;font:9px var(--mono);opacity:0;transition:opacity .2s}.media-card:hover .source-badge{opacity:1}
 .source-credit{font:11px var(--mono);color:var(--muted);margin-bottom:10px}.source-credit span{color:var(--accent)}
-
-/* ── Online player section ─────────────────────────────────── */
 .player-section{border-top:1px solid var(--line);padding:28px 0}
 .player-note{font-size:12px;color:var(--muted);margin-bottom:14px}
 .player-server-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
@@ -122,25 +116,81 @@ h1 em,h2 em{font-style:italic;color:var(--accent)}
 .player-frame-wrap{border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9}
 .player-frame{width:100%;height:100%;border:0;display:block}
 .player-legal{font-size:10px;color:var(--muted);margin-top:10px;line-height:1.6;padding:0 2px}
-
-/* ── Ad slots ──────────────────────────────────────────────── */
 .ad-placeholder{display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--surface2) 70%,transparent);border:1px dashed var(--line);border-radius:8px;min-height:90px;color:var(--muted);font:10px var(--mono);text-transform:uppercase;letter-spacing:1px;margin:16px auto;max-width:100%;width:fit-content;padding:12px 24px}
 .ad-slot{display:flex;justify-content:center;margin:12px 0}
 .ad-home-top,.ad-home-bottom,.ad-top,.ad-bottom{margin:0 0 16px}
 .ad-mid{margin:20px auto;text-align:center}
 .ad-infeed{margin:20px 0}
-
-/* ── Sitemap / SEO helpers (no visual impact) ──────────────── */
 [data-seo-hidden]{display:none}
+@media(max-width:760px){.mode-toggle{overflow:auto;width:100%;order:3}.nav{flex-wrap:wrap}.player-server-row{gap:5px}.server-btn{padding:7px 10px;font-size:11px}}
+@media(max-width:520px){.mode-btn{padding:6px 8px;font-size:11px}.ad-placeholder{min-height:60px;font-size:9px}}
 
-/* ── Responsive updates for new elements ──────────────────── */
+/* ── Compact hero override ── */
+.hero-compact{min-height:230px;padding:20px 0 22px}
+.hero-compact h1{font-size:clamp(34px,4.2vw,58px);letter-spacing:-2.5px;margin:8px 0 12px}
+
+/* ── Auto-scroll banner strip ── */
+.hero-banner{overflow:hidden;position:relative;padding:14px 0;border-bottom:1px solid var(--line)}
+.hero-banner::before,.hero-banner::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.hero-banner::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+.hero-banner::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+.banner-track{display:flex;gap:9px;width:max-content;animation:bannerScroll 55s linear infinite}
+.banner-track:hover{animation-play-state:paused}
+@keyframes bannerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.banner-tile{flex:0 0 auto;width:120px;border:1px solid var(--line);background:var(--surface);border-radius:8px;overflow:hidden;cursor:pointer;padding:0;text-align:left;transition:transform .15s,border-color .15s}
+.banner-tile:hover{transform:translateY(-3px) scale(1.03);border-color:var(--accent)}
+.banner-tile img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
+.banner-tile-info{padding:6px 7px 7px}
+.banner-tile-title{font-size:10px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px}
+.banner-tile-caps{display:flex;flex-wrap:wrap;gap:3px}
+
+/* ── Capsule badges (bcap) ── */
+.bcap{display:inline-flex;align-items:center;padding:2px 6px;border-radius:99px;font:500 8px var(--mono);background:var(--surface2);color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.bcap-new{background:var(--accent);color:var(--black);border-color:transparent;font-weight:700}
+.bcap-series{background:color-mix(in srgb,#7c6af7 20%,transparent);color:#9d8fff;border-color:#7c6af755}
+.bcap-anime{background:color-mix(in srgb,#ff6b9d 20%,transparent);color:#ff8db5;border-color:#ff6b9d55}
+
+/* ── Horizontal scroll rows ── */
+.horiz-section{border-top:1px solid var(--line);padding-top:22px;margin-top:30px}
+.horiz-section .section-top{margin-bottom:12px}
+.horiz-section h2{font-size:22px;letter-spacing:-1px;margin:5px 0 0}
+.horiz-scroll{display:flex;gap:9px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:var(--surface2) transparent}
+.horiz-scroll::-webkit-scrollbar{height:3px}.horiz-scroll::-webkit-scrollbar-track{background:transparent}.horiz-scroll::-webkit-scrollbar-thumb{background:var(--surface2);border-radius:2px}
+.horiz-card{flex:0 0 auto;width:125px;border:0;background:none;padding:0;cursor:pointer;text-align:left}
+.horiz-poster{position:relative;aspect-ratio:2/3;border-radius:8px;overflow:hidden;background:var(--surface2)}
+.horiz-poster img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.horiz-card:hover .horiz-poster img{transform:scale(1.06)}
+.horiz-badge{position:absolute;top:6px;left:6px;z-index:2}
+.horiz-year{position:absolute;bottom:5px;right:5px;font:700 8px var(--mono);background:rgba(0,0,0,.75);color:#fff;padding:2px 5px;border-radius:4px}
+.horiz-info{padding:5px 2px 0}
+.horiz-title{font-size:11px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0 0 4px}
+.horiz-caps{display:flex;flex-wrap:wrap;gap:3px}
+
+/* ── Category card grid ── */
+.cat-section{border-top:1px solid var(--line);padding-top:22px;margin-top:30px}
+.cat-section .section-top{margin-bottom:14px}
+.cat-section h2{font-size:22px;letter-spacing:-1px;margin:5px 0 0}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px}
+.cat-card{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;border:1px solid var(--line);cursor:pointer;background:var(--surface);padding:0;transition:transform .2s,border-color .2s,box-shadow .2s}
+.cat-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.cat-card-posters{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px}
+.cat-card-posters img{width:100%;height:100%;object-fit:cover}
+.cat-card-placeholder{width:100%;height:100%;background:var(--surface2)}
+.cat-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.12) 60%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:10px 11px}
+.cat-card-emoji{font-size:17px;line-height:1;margin-bottom:3px}
+.cat-card-name{font:600 12px var(--sans);color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ── Home page spacing ── */
+.home-page .catalog{margin-top:30px}
+
 @media(max-width:760px){
-  .mode-toggle{overflow:auto;width:100%;order:3}
-  .nav{flex-wrap:wrap}
-  .player-server-row{gap:5px}
-  .server-btn{padding:7px 10px;font-size:11px}
+  .cat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .horiz-card{width:110px}
+  .banner-tile{width:100px}
+  .hero-compact{min-height:0;padding:16px 0 18px}
 }
 @media(max-width:520px){
-  .mode-btn{padding:6px 8px;font-size:11px}
-  .ad-placeholder{min-height:60px;font-size:9px}
+  .cat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .horiz-card{width:95px}
+  .banner-tile{width:90px}
 }
