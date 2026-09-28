@@ -5,6 +5,7 @@ import {
 } from '../database/mediaCatalog'
 import { LayoutToggle } from '../components/LayoutToggle'
 import { AdSlot } from '../components/AdSlot'
+import { AdNativeBanner } from '../components/AdNativeBanner'
 import { MediaCard } from '../modules/MediaCard'
 import { DetailPage } from '../modules/DynamicGallery'
 import { useApp } from '../context/AppContext'
@@ -317,6 +318,9 @@ export function Dashboard({ route, search, setSearch, onOpenTitle, onOpenCategor
             onOpenTitle={onOpenTitle}
           />
         )}
+
+        {/* ── Native Banner (between rows and category cards) ── */}
+        {!searchText && <AdNativeBanner className="ad-native-home" />}
 
         {/* ── Category cards ── */}
         {!searchText && <CategoryCards items={modeFiltered} onOpenCategory={onOpenCategory} />}
