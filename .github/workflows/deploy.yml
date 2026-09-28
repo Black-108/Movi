@@ -36,5 +36,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./frontend/dist
-          cname: movie.guru
+          cname: movi.guru
           commit_message: 'deploy: ${{ github.event.head_commit.message }}'
