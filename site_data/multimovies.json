@@ -1,0 +1,958 @@
+[
+  {
+    "id": "multimovies-0001",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/bollywood-movies/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Bollywood Movies",
+      "clean": "Bollywood Movies",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": null,
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w185/lBeDq7KmZaQNnnIXgExCAmfLMqT.jpg",
+        "https://image.tmdb.org/t/p/w185/v2k82zqPQyuBNZxeu5Fr4LWoKUY.jpg",
+        "https://image.tmdb.org/t/p/w185/fgaQz1gJDi2ZSPKDVUtc7fGuFk0.jpg",
+        "https://image.tmdb.org/t/p/w185/jvfqp6gMlvHODYnBXoogqRyIs0k.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0002",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/hollywood/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Hollywood",
+      "clean": "Hollywood",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": null,
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w185/39aMkR8Y5vhCG9dTkjiqRl8AVqp.jpg",
+        "https://image.tmdb.org/t/p/w185/vfZxVHextAGC70zrNhS8lsROqP1.jpg",
+        "https://image.tmdb.org/t/p/w185/8qPtHYpeRgRQUDVYk5M8X37Rkbb.jpg",
+        "https://image.tmdb.org/t/p/w185/9LGEqZvzI7Tsosf8srwEY48rZsD.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0003",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/south-indian/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "South Indian",
+      "clean": "South Indian",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": null,
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w185/jt8pfSIdi47YpFMMWVRr8w5u2S0.jpg",
+        "https://image.tmdb.org/t/p/w185/sPePQmJRKkB14sGjB7zBkLJkaTW.jpg",
+        "https://image.tmdb.org/t/p/w185/A8Y0QLNqaFvsergQe80tC6Nfa2k.jpg",
+        "https://image.tmdb.org/t/p/w185/lZiTSLDLIkW9YS6CWo8uaXZMcO6.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0004",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/anime-hindi/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Hindi Dub Anime",
+      "clean": "Hindi Dub",
+      "year": null
+    },
+    "category": "Anime",
+    "content_type": "anime",
+    "media": {
+      "poster": null,
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w185/68rh8l8RaGujTDF6k87yykxixIy.jpg",
+        "https://image.tmdb.org/t/p/w185/e0HIphKTbM0YjWCASdCsjYtESHG.jpg",
+        "https://image.tmdb.org/t/p/w185/kmElJ49MJNj3sQhKv6GrUqWyPVa.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0005",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/anime-movies/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Anime Movies",
+      "clean": "Anime Movies",
+      "year": null
+    },
+    "category": "Anime",
+    "content_type": "anime",
+    "media": {
+      "poster": null,
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w185/hNd4F5MzXcRJ35go07Ozbw3KUw2.jpg",
+        "https://image.tmdb.org/t/p/w185/6YkVpc9Dn1L2FHNlLOybpSKeGc7.jpg",
+        "https://image.tmdb.org/t/p/w185/nUCkV0iODxbULZQ5vRN1sDjPrpk.jpg",
+        "https://image.tmdb.org/t/p/w185/fWVSwgjpT2D78VUh6X8UBd2rorW.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0006",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/anime-series/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Anime Series",
+      "clean": "Anime Series",
+      "year": null
+    },
+    "category": "Anime",
+    "content_type": "anime",
+    "media": {
+      "poster": null,
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w185/vR7hwaGQ0ySRoq1WobiNRaPs4WO.jpg",
+        "https://image.tmdb.org/t/p/w185/gLKOYIMyKlUHW0SVdskhgf9C0yy.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0007",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/doraemon/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Doraemon Movies",
+      "clean": "Doraemon Movies",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": null,
+      "screenshots": []
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0008",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/multimovies-com-fast-and-furious-movies/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Fast and Furious movies",
+      "clean": "Fast and Furious movies",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": null,
+      "screenshots": []
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0009",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/multimovies-com-harry-potter-movies/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Harry Potter movies",
+      "clean": "Harry Potter movies",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": null,
+      "screenshots": []
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0010",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/naruto-movies/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Naruto Movies",
+      "clean": "Naruto Movies",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": null,
+      "screenshots": []
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0011",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/genre/shinchan-movies/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Shinchan Movies",
+      "clean": "Shinchan Movies",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": null,
+      "screenshots": []
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0012",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/movies/mirzapur-the-movie/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Mirzapur: The Movie",
+      "clean": "Mirzapur: The",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/jAt8u6MMIMnExmG6bN02EQyB0KR.jpg",
+      "screenshots": [
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png",
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png",
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png",
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [
+      "Bollywood Movies",
+      "Crime",
+      "Thriller"
+    ],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0013",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/seasons/s-w-a-t-exiles-season-1/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Season 1",
+      "clean": "Season 1",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/m5jLj4XlzseaN0HfF2xKM6rfJVm.jpg",
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w154/ftJJrzNzevPEYaYMhWaTZthA6Tl.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0014",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/seasons/overgeared-season-1/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Season 1",
+      "clean": "Season 1",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/94GLmulA9qVGsuo9kLpVKi01E2Z.jpg",
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w154/kcuOU2FUmy2e0FDTq9YIuY6a3DW.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0015",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/seasons/bob-the-builder-season-1/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Season 1",
+      "clean": "Season 1",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/gErUFP6ScXltegWnJSGAT7MFDFT.jpg",
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w154/wbDgdkU4cnBGyO53KSdSB2czvrb.jpg",
+        "https://image.tmdb.org/t/p/w154/by39ePpwmoN2yy8Cq206PTlktsd.jpg",
+        "https://image.tmdb.org/t/p/w154/7qjeL8TplqQsVGWg3z1JmujsZkT.jpg",
+        "https://image.tmdb.org/t/p/w154/r6IzUCT7kR6IAE2jtMY42d8iHwz.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0016",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/seasons/the-great-indian-kapil-show-season-5/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Season 5",
+      "clean": "Season 5",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/tTnNTHThvJGwwoCIyeDyIbn9ze9.jpg",
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w154/wnnclP37G1eyEG6ciVnV1Ub9mvI.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0017",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/seasons/rise-and-fall-season-2/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Season 2",
+      "clean": "Season 2",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/nKBHSZpzeHIFZ6Qab6tA7oFT12J.jpg",
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w154/7P8yFtLDb6gWI5KLHlfFNlf3lQj.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0018",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/seasons/the-final-problem-season-1/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Season 1",
+      "clean": "Season 1",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/1RD6GrZooXgq1JWDQqSm4R2XEZe.jpg",
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w154/fVErynkUGlTLVitZoVKn5xNwcPD.jpg",
+        "https://image.tmdb.org/t/p/w154/frcBvT2xRvuLdmT0vB3sfv1l9TU.jpg",
+        "https://image.tmdb.org/t/p/w154/cHXRnJ2EeJv2usotHZKxAzshcXD.jpg",
+        "https://image.tmdb.org/t/p/w154/4fvCOuF2iaHOn7GONfOmeBcqPVu.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": [
+      {
+        "label": "The Amazing World of Gumball2011",
+        "link": "https://multimovies.casa/tvshows/the-amazing-world-of-gumball/",
+        "quality": null,
+        "size": null,
+        "is_direct": false
+      }
+    ]
+  },
+  {
+    "id": "multimovies-0019",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/seasons/shaque-trust-no-one-season-1/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Season 1",
+      "clean": "Season 1",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/dMGaBgEjYlEiR0GybDdrraSCTP6.jpg",
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w154/m9jv6U23GpjWqQQKevvXLF05S5k.jpg",
+        "https://image.tmdb.org/t/p/w154/tKHxrqBhcspq38ipsxn9PeebHaz.jpg",
+        "https://image.tmdb.org/t/p/w154/zYK8HkInSNOr8wVOEeUHU5IMQxn.jpg",
+        "https://image.tmdb.org/t/p/w154/xDLoMler3stPBvsc2vMWq4t7YXg.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": [
+      {
+        "label": "The Amazing World of Gumball2011",
+        "link": "https://multimovies.casa/tvshows/the-amazing-world-of-gumball/",
+        "quality": null,
+        "size": null,
+        "is_direct": false
+      }
+    ]
+  },
+  {
+    "id": "multimovies-0020",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/seasons/hunkkaar-the-roar-season-1/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Season 1",
+      "clean": "Season 1",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/8mEF0rKosBlBB2KL7IRbjq4gS4A.jpg",
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w154/sq6rANDA20r8Fj3k85C2Wqj2211.jpg",
+        "https://image.tmdb.org/t/p/w154/8gqnR9Q3erYJHMHiEZKZaVqNZ35.jpg",
+        "https://image.tmdb.org/t/p/w154/uHfHtNknqRRvudfrCm4lis1yRlk.jpg",
+        "https://image.tmdb.org/t/p/w154/ujpHd3pCcvEIzSEzT9MOnwu9MqM.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": [
+      {
+        "label": "Aarambh",
+        "link": "https://multimovies.casa/episodes/hunkkaar-the-roar-1x1/",
+        "quality": null,
+        "size": null,
+        "is_direct": false
+      }
+    ]
+  },
+  {
+    "id": "multimovies-0021",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/seasons/angel-eyes-season-1/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Season 1",
+      "clean": "Season 1",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/b9A8gGJmC7HPVqLecXkVWm6g1WB.jpg",
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w154/frjj5hyqGnpFxYmf0b6zW9eRy2q.jpg",
+        "https://image.tmdb.org/t/p/w154/jwVwiOS6mbeCa86h8xNhCSjdPiV.jpg",
+        "https://image.tmdb.org/t/p/w154/sBEZk2y8UV4qb08C6hFINDPUNX7.jpg",
+        "https://image.tmdb.org/t/p/w154/6G9auPwfihnRLEoG3pQFPqCdnuD.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0022",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/seasons/bakaiti-season-2/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Season 2",
+      "clean": "Season 2",
+      "year": null
+    },
+    "category": "Movie",
+    "content_type": "movie",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w185/6z2OroBFt27O7PjB6Wz0tb6UtOy.jpg",
+      "screenshots": [
+        "https://image.tmdb.org/t/p/w154/1WOqDbOkFX2WbV7kJjWZRXlQVRG.jpg",
+        "https://image.tmdb.org/t/p/w154/jB38pVjhWDYrilKUHIzvZ6l95TD.jpg",
+        "https://image.tmdb.org/t/p/w154/ht5SjEVHr6W8CawtBGYpNPlf93z.jpg",
+        "https://image.tmdb.org/t/p/w154/A2ANrYrPyxwAJkYSFqfG7489VP.jpg"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": [
+      {
+        "label": "The Amazing World of Gumball2011",
+        "link": "https://multimovies.casa/tvshows/the-amazing-world-of-gumball/",
+        "quality": null,
+        "size": null,
+        "is_direct": false
+      }
+    ]
+  },
+  {
+    "id": "multimovies-0023",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/episodes/overgeared-1x1/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Episode 1",
+      "clean": "Episode 1",
+      "year": null
+    },
+    "category": "Web Series",
+    "content_type": "series",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w300/kcuOU2FUmy2e0FDTq9YIuY6a3DW.jpg",
+      "screenshots": [
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png",
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png",
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png",
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  },
+  {
+    "id": "multimovies-0024",
+    "source": {
+      "site": "multimovies",
+      "site_name": "MultiMovies",
+      "detail_url": "https://multimovies.casa/episodes/sparks-of-tomorrow-1x13/",
+      "scraped_at": "2026-09-28T10:58:46Z"
+    },
+    "title": {
+      "raw": "Episode 13",
+      "clean": "Episode 13",
+      "year": null
+    },
+    "category": "Web Series",
+    "content_type": "series",
+    "media": {
+      "poster": "https://image.tmdb.org/t/p/w300/cYA5KHIYZLN7gzT6qRaw7Kovjv7.jpg",
+      "screenshots": [
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png",
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png",
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png",
+        "https://multimovies.casa/wp-content/themes/dooplay/assets/img/flags/in.png"
+      ]
+    },
+    "info": {
+      "genre": null,
+      "language": null,
+      "duration": null,
+      "release_date": null,
+      "description": null,
+      "cast": [],
+      "director": null,
+      "imdb_rating": null
+    },
+    "files": {
+      "available_sizes": []
+    },
+    "tags": [],
+    "downloads": []
+  }
+]
