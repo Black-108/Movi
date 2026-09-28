@@ -1,0 +1,63 @@
+{
+  "output_path": "../frontend/public/Movi.json",
+  "request_delay_seconds": 2.5,
+  "max_pages_per_site": 50,
+  "sites": [
+    {
+      "name": "FilmyFly",
+      "key": "filmyfly",
+      "base_url": "https://filmyfly.bingo",
+      "enabled": true,
+      "notes": "Try filmyfly.com / filmyfly.in if domain changes"
+    },
+    {
+      "name": "FilmyZilla",
+      "key": "filmyzilla",
+      "base_url": "https://filmyzilla.com.in",
+      "enabled": true,
+      "notes": "Try filmyzilla.zone / filmyzilla.city if domain changes"
+    },
+    {
+      "name": "MultiMovies",
+      "key": "multimovies",
+      "base_url": "https://multimovies.casa",
+      "enabled": true,
+      "notes": "Try multimovies.store if domain changes"
+    },
+    {
+      "name": "YupFlix",
+      "key": "yupflix",
+      "base_url": "https://yupflix.org",
+      "enabled": true,
+      "notes": ""
+    },
+    {
+      "name": "FilmyHit",
+      "key": "filmyhit",
+      "base_url": "https://filmyhit.com.co",
+      "enabled": true,
+      "notes": "Try filmyhit.life / filmyhit.wiki if domain changes"
+    },
+    {
+      "name": "9xMovies",
+      "key": "9xmovies",
+      "base_url": "https://9xmovies.works",
+      "enabled": true,
+      "notes": "Try 9xmovies.show / 9xmovies.care if domain changes"
+    },
+    {
+      "name": "VegaMovies",
+      "key": "vegamovies",
+      "base_url": "https://vegamovies.st",
+      "enabled": true,
+      "notes": "Try vegamovies.nl / vegamovies.bond if domain changes"
+    },
+    {
+      "name": "HDHub4u",
+      "key": "hdhub4u",
+      "base_url": "https://hdhub4u.ms",
+      "enabled": true,
+      "notes": "Try hdhub4u.fit / hdhub4u.fan if domain changes"
+    }
+  ]
+}
