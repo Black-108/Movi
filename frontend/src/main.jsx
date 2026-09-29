@@ -7,7 +7,6 @@ import { Dashboard } from './views/Dashboard'
 import { TroubleshootingPortal } from './views/TroubleshootingPortal'
 import { PrivacyPage, DisclaimerPage, DmcaPage, TermsPage } from './views/LegalPages'
 import { SearchPage } from './views/SearchPage'
-import { AdSocialBar } from './components/AdSocialBar'
 import { AdInPagePush } from './components/AdInPagePush'
 import './styles.css'
 
@@ -59,7 +58,6 @@ function App() {
 
   return (
     <AppProvider>
-      <AdSocialBar />
       <AdInPagePush />
       <Nav route={route} setPage={setPage} search={search} setSearch={setSearch} />
       {(() => {

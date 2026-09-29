@@ -48,7 +48,7 @@ export function AdInPagePush() {
         height={PUSH_H}
         frameBorder="0"
         scrolling="no"
-        sandbox="allow-scripts allow-popups allow-forms allow-popups-to-escape-sandbox"
+        sandbox="allow-scripts allow-popups allow-forms allow-popups-to-escape-sandbox allow-same-origin"
         style={{ display: 'block', border: 'none' }}
         title="Advertisement"
       />
