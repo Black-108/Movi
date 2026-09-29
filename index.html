@@ -43,6 +43,9 @@
   <script>
     (function(){
       var _open = window.open;
+      function blockExtNav(url) {
+        try { return url && new URL(url, location.href).origin !== location.origin; } catch(e){ return false; }
+      }
       window.open = function(url, target, features) {
         if (url && url !== '' && url !== 'about:blank') {
           target = '_blank';
@@ -54,25 +57,32 @@
       };
       var _assign = window.location.assign.bind(window.location);
       window.location.assign = function(url) {
-        try {
-          if (url && new URL(url, location.href).origin !== location.origin) {
-            _open(url, '_blank', 'noopener,noreferrer'); return;
-          }
-        } catch(e){}
+        if (blockExtNav(url)) { _open(url, '_blank', 'noopener,noreferrer'); return; }
         _assign(url);
       };
       var _replace = window.location.replace.bind(window.location);
       window.location.replace = function(url) {
-        try {
-          if (url && new URL(url, location.href).origin !== location.origin) {
-            _open(url, '_blank', 'noopener,noreferrer'); return;
-          }
-        } catch(e){}
+        if (blockExtNav(url)) { _open(url, '_blank', 'noopener,noreferrer'); return; }
         _replace(url);
       };
+      // Block direct location.href = '...' assignments to external sites
+      try {
+        var _hrefDesc = Object.getOwnPropertyDescriptor(Location.prototype, 'href');
+        if (_hrefDesc && _hrefDesc.set) {
+          var _origSet = _hrefDesc.set;
+          Object.defineProperty(Location.prototype, 'href', {
+            get: _hrefDesc.get,
+            set: function(url) {
+              if (blockExtNav(url)) { _open(url, '_blank', 'noopener,noreferrer'); return; }
+              _origSet.call(this, url);
+            },
+            configurable: true
+          });
+        }
+      } catch(e){}
     })();
   </script>
-    <script type="module" crossorigin src="/assets/index-BHdMXgAh.js"></script>
+    <script type="module" crossorigin src="/assets/index-DsKhrl9J.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-C8_dxFkq.css">
   </head>
   <body>
