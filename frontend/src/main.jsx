@@ -39,7 +39,7 @@ function App() {
   }, [])
 
   const isSearching = search.trim().length > 0 &&
-    !['detail', 'diagnostics', ...Object.keys(LEGAL_PAGES)].includes(route.page)
+    !['diagnostics', ...Object.keys(LEGAL_PAGES)].includes(route.page)
 
   useEffect(() => {
     const labels = {

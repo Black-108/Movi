@@ -54,6 +54,7 @@ export function AdSlot({ slot, className = '' }) {
           height={height}
           frameBorder="0"
           scrolling="no"
+          sandbox="allow-scripts allow-popups allow-forms allow-popups-to-escape-sandbox"
           style={{ display: 'block', border: 'none' }}
           title="Advertisement"
           onLoad={handleLoad}
