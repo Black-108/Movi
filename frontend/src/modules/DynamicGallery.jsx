@@ -3,6 +3,7 @@ import { MediaCard } from './MediaCard'
 import { Player } from './Player'
 import { AdSlot } from '../components/AdSlot'
 import { AdNativeBanner } from '../components/AdNativeBanner'
+import { DownloadModal } from '../components/DownloadModal'
 import { shuffle } from '../database/mediaCatalog'
 
 function Tag({ children }) {
@@ -12,6 +13,7 @@ function Tag({ children }) {
 export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search, setSearch }) {
   const images = item.media.screenshot?.length ? item.media.screenshot : [item.media.main_poster].filter(Boolean)
   const [active, setActive] = useState(0)
+  const [modalDl, setModalDl] = useState(null) // { url, label }
 
   const suggestions = useMemo(() => {
     const genres = item.file_info.genre.toLowerCase().split(',').map(x => x.trim()).filter(Boolean)
@@ -137,9 +139,12 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
                   <h3>{download.label || 'External source'}</h3>
                   <p>Movi is an index — we link to external sites and do not host, proxy, or alter any media.</p>
                   {download.link && (
-                    <a className="primary-btn" href={download.link} target="_blank" rel="noreferrer noopener">
-                      Watch / Visit ↗
-                    </a>
+                    <button
+                      className="primary-btn"
+                      onClick={() => setModalDl({ url: download.link, label: download.label || item.clean_title })}
+                    >
+                      Watch / Download
+                    </button>
                   )}
                 </div>
               ))}
@@ -157,6 +162,14 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
         <div className="section-label"><span className="eyebrow">Suggestions</span><h2>More like this</h2></div>
         <div className="catalog-grid">{suggestions.map(candidate => <MediaCard key={candidate.id} item={candidate} onSelect={onOpenTitle} />)}</div>
       </section>
+
+      {modalDl && (
+        <DownloadModal
+          url={modalDl.url}
+          label={modalDl.label}
+          onClose={() => setModalDl(null)}
+        />
+      )}
     </main>
   )
 }
