@@ -40,7 +40,39 @@
       }
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-6nWgmspu.js"></script>
+  <script>
+    (function(){
+      var _open = window.open;
+      window.open = function(url, target, features) {
+        if (url && url !== '' && url !== 'about:blank') {
+          target = '_blank';
+          features = typeof features === 'string'
+            ? (features + ',noopener,noreferrer')
+            : 'noopener,noreferrer';
+        }
+        return _open.call(this, url, target, features);
+      };
+      var _assign = window.location.assign.bind(window.location);
+      window.location.assign = function(url) {
+        try {
+          if (url && new URL(url, location.href).origin !== location.origin) {
+            _open(url, '_blank', 'noopener,noreferrer'); return;
+          }
+        } catch(e){}
+        _assign(url);
+      };
+      var _replace = window.location.replace.bind(window.location);
+      window.location.replace = function(url) {
+        try {
+          if (url && new URL(url, location.href).origin !== location.origin) {
+            _open(url, '_blank', 'noopener,noreferrer'); return;
+          }
+        } catch(e){}
+        _replace(url);
+      };
+    })();
+  </script>
+    <script type="module" crossorigin src="/assets/index-DJUyAlLb.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DPtjSHyu.css">
   </head>
   <body>
