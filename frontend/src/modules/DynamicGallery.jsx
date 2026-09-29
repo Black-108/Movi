@@ -3,7 +3,7 @@ import { MediaCard } from './MediaCard'
 import { Player } from './Player'
 import { AdSlot } from '../components/AdSlot'
 import { AdNativeBanner } from '../components/AdNativeBanner'
-import { DownloadModal } from '../components/DownloadModal'
+import { DownloadFrame } from '../components/DownloadModal'
 import { shuffle } from '../database/mediaCatalog'
 
 function Tag({ children }) {
@@ -13,7 +13,7 @@ function Tag({ children }) {
 export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search, setSearch }) {
   const images = item.media.screenshot?.length ? item.media.screenshot : [item.media.main_poster].filter(Boolean)
   const [active, setActive] = useState(0)
-  const [modalDl, setModalDl] = useState(null) // { url, label }
+  const [activeDlUrl, setActiveDlUrl] = useState(null)
 
   const suggestions = useMemo(() => {
     const genres = item.file_info.genre.toLowerCase().split(',').map(x => x.trim()).filter(Boolean)
@@ -129,26 +129,35 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
         <div className="section-label"><span className="eyebrow">Where to Watch</span><h2>Streaming &amp; source links</h2></div>
         {item.downloads.length
           ? (
-            <div className="source-grid">
-              {item.downloads.map((download, index) => (
-                <div className="source-card" key={download.id}>
-                  <div className="source-card-top">
-                    <span className="source-type">{download.is_direct_file ? 'Direct stream' : 'Streaming page'}</span>
-                    <span className="source-index">{String(index + 1).padStart(2, '0')}</span>
+            <>
+              <div className="source-grid">
+                {item.downloads.map((download, index) => (
+                  <div className={`source-card${activeDlUrl === download.link ? ' source-card-open' : ''}`} key={download.id}>
+                    <div className="source-card-top">
+                      <span className="source-type">{download.is_direct_file ? 'Direct stream' : 'Streaming page'}</span>
+                      <span className="source-index">{String(index + 1).padStart(2, '0')}</span>
+                    </div>
+                    <h3>{download.label || 'External source'}</h3>
+                    <p>Movi is an index — we link to external sites and do not host, proxy, or alter any media.</p>
+                    {download.link && (
+                      <button
+                        className="primary-btn"
+                        onClick={() => setActiveDlUrl(activeDlUrl === download.link ? null : download.link)}
+                      >
+                        {activeDlUrl === download.link ? 'Close ↑' : 'Watch / Download'}
+                      </button>
+                    )}
                   </div>
-                  <h3>{download.label || 'External source'}</h3>
-                  <p>Movi is an index — we link to external sites and do not host, proxy, or alter any media.</p>
-                  {download.link && (
-                    <button
-                      className="primary-btn"
-                      onClick={() => setModalDl({ url: download.link, label: download.label || item.clean_title })}
-                    >
-                      Watch / Download
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+
+              {activeDlUrl && (
+                <DownloadFrame
+                  url={activeDlUrl}
+                  onClose={() => setActiveDlUrl(null)}
+                />
+              )}
+            </>
           )
           : <div className="empty-box">No streaming sources were found for this title in our index.</div>}
         <p className="legal-callout">Movi is a discovery index. Always access content through channels you are legally permitted to use in your region.</p>
@@ -163,13 +172,6 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
         <div className="catalog-grid">{suggestions.map(candidate => <MediaCard key={candidate.id} item={candidate} onSelect={onOpenTitle} />)}</div>
       </section>
 
-      {modalDl && (
-        <DownloadModal
-          url={modalDl.url}
-          label={modalDl.label}
-          onClose={() => setModalDl(null)}
-        />
-      )}
     </main>
   )
 }

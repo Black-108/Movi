@@ -246,23 +246,19 @@ h1 em,h2 em{font-style:italic;color:var(--accent)}
 .ad-mid{margin:20px auto}
 .ad-native,.ad-native-home{display:block;margin:24px auto;max-width:100%}
 
-/* ── Download Modal ── */
-.dlmodal-overlay{position:fixed;inset:0;z-index:850;background:rgba(0,0,0,.82);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:12px}
-.dlmodal-panel{width:100%;max-width:920px;height:90vh;display:flex;flex-direction:column;background:var(--surface);border-radius:12px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.65);border:1px solid var(--line)}
-.dlmodal-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--line);gap:10px;flex-shrink:0}
-.dlmodal-meta{display:flex;align-items:center;gap:8px;min-width:0}
-.dlmodal-badge{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);border-radius:4px;padding:2px 8px;font:11px var(--mono);white-space:nowrap;border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
-.dlmodal-name{font:13px var(--sans);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dlmodal-controls{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.dlmodal-ext{font:12px var(--mono);color:var(--muted);text-decoration:none;padding:4px 10px;border-radius:5px;border:1px solid var(--line);white-space:nowrap;transition:color .15s}
-.dlmodal-ext:hover{color:var(--ink)}
-.dlmodal-close{width:28px;height:28px;border-radius:6px;background:transparent;border:1px solid var(--line);color:var(--muted);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:background .15s}
-.dlmodal-close:hover{background:var(--line);color:var(--ink)}
-.dlmodal-iframe{flex:1;width:100%;border:none;display:block;background:#fff}
-.dlmodal-footer{padding:8px 14px;font:11px var(--mono);color:var(--muted);border-top:1px solid var(--line);flex-shrink:0;line-height:1.5}
-.dlmodal-footer a{color:var(--accent);text-decoration:none}
-.dlmodal-footer a:hover{text-decoration:underline}
-@media(max-width:600px){.dlmodal-panel{height:96vh;border-radius:8px}.dlmodal-name{display:none}}
+/* ── Inline download frame ── */
+.dlframe-wrap{margin-top:20px;border-radius:10px;overflow:hidden;border:1px solid var(--line);animation:dlframe-in .25s ease both}
+@keyframes dlframe-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.dlframe-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface);border-bottom:1px solid var(--line);gap:10px}
+.dlframe-title{font:13px var(--mono);color:var(--muted)}
+.dlframe-bar-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.dlframe-newtab{font:12px var(--mono);color:var(--ink);text-decoration:none;padding:4px 10px;border-radius:5px;border:1px solid var(--line);white-space:nowrap;transition:background .15s}
+.dlframe-newtab:hover{background:var(--line)}
+.dlframe-close{width:28px;height:28px;border-radius:6px;background:transparent;border:1px solid var(--line);color:var(--muted);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.dlframe-close:hover{background:var(--line);color:var(--ink)}
+.dlframe-iframe{width:100%;height:600px;border:none;display:block;background:#fff}
+.source-card-open{border-color:var(--accent)!important}
+@media(max-width:600px){.dlframe-iframe{height:460px}}
 
 /* ── In-Page Push floating ad ── */
 .ipp-wrap{position:fixed;bottom:20px;right:20px;z-index:8000;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.55);background:var(--surface);border:1px solid var(--line);animation:ipp-slide-in .35s cubic-bezier(.22,1,.36,1) both}
