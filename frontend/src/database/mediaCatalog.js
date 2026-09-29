@@ -314,9 +314,102 @@ export function getCollection(items, id) {
   return { ...rule, count: members.length, items: members }
 }
 
+// ── Fuzzy search ─────────────────────────────────────────────────────────────
+
+function normQ(s) {
+  return s.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
+}
+
+// Levenshtein with early-exit when distance already exceeds cap
+function editDist(a, b, cap) {
+  if (a === b) return 0
+  const diff = Math.abs(a.length - b.length)
+  if (diff > cap) return cap + 1
+  const row = Array.from({ length: b.length + 1 }, (_, i) => i)
+  for (let i = 1; i <= a.length; i++) {
+    let prev = i - 1
+    row[0] = i
+    let rowMin = i
+    for (let j = 1; j <= b.length; j++) {
+      const val = a[i - 1] === b[j - 1] ? prev : Math.min(prev, row[j], row[j - 1]) + 1
+      prev = row[j]
+      row[j] = val
+      if (val < rowMin) rowMin = val
+    }
+    if (rowMin > cap) return cap + 1
+  }
+  return row[b.length]
+}
+
+// How well does a single query word match the best candidate in a list?
+// Returns 0-100; 0 = no match.
+function wordScore(qw, candidates) {
+  // Error budget: 1 typo per 5 chars, at least 1 for words 4+ chars
+  const budget = qw.length <= 3 ? 0 : Math.max(1, Math.floor(qw.length / 5))
+  let bestDist = Infinity
+  for (const c of candidates) {
+    if (c === qw) return 100
+    if (c.startsWith(qw) || qw.startsWith(c)) return 92
+    const d = editDist(qw, c, budget)
+    if (d < bestDist) bestDist = d
+  }
+  if (bestDist === 0) return 100
+  if (bestDist <= budget) return Math.max(35, 100 - bestDist * 22)
+  return 0
+}
+
+/**
+ * Returns a relevance score 0–100.  0 = no match.
+ * Tier 1 (100): full query is a substring of _searchText.
+ * Tier 2 (70-95): every query token found verbatim somewhere in _searchText.
+ * Tier 3 (35-90): query tokens fuzzy-matched against title words.
+ * Mixed: at least ≥50% of tokens must score >0.
+ */
+export function searchScore(item, query) {
+  const q = normQ(query)
+  if (!q) return 0
+
+  // Tier 1 – exact substring
+  if (item._searchText.includes(q)) return 100
+
+  const qWords = q.split(' ').filter(w => w.length >= 2)
+  if (qWords.length === 0) return item._searchText.includes(q[0]) ? 50 : 0
+
+  const titleWords = normQ(item.clean_title).split(' ').filter(Boolean)
+
+  let totalScore = 0
+  let totalWeight = 0
+  let hits = 0
+
+  for (const qw of qWords) {
+    const w = qw.length
+    totalWeight += w
+
+    // Tier 2 – exact token anywhere in search blob
+    if (item._searchText.includes(qw)) {
+      totalScore += w * 88
+      hits++
+      continue
+    }
+
+    // Tier 3 – fuzzy against title words only
+    const s = wordScore(qw, titleWords)
+    if (s > 0) hits++
+    totalScore += w * s
+  }
+
+  if (totalWeight === 0 || hits === 0) return 0
+
+  // Require at least half the words to match
+  const matchRatio = hits / qWords.length
+  if (matchRatio < 0.5) return 0
+
+  return (totalScore / totalWeight) * matchRatio
+}
+
 export function matchesSearch(item, search) {
-  const query = clean(search).toLowerCase()
-  return !query || item._searchText.includes(query)
+  const q = clean(search).toLowerCase()
+  return !q || searchScore(item, q) > 0
 }
 
 export function filterByContentMode(items, mode) {

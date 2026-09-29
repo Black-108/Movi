@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { loadMediaCatalog, matchesSearch } from '../database/mediaCatalog'
+import { loadMediaCatalog, searchScore } from '../database/mediaCatalog'
 import { MediaCard } from '../modules/MediaCard'
 import { AdSlot } from '../components/AdSlot'
 import { AdNativeBanner } from '../components/AdNativeBanner'
@@ -27,16 +27,21 @@ export function SearchPage({ search, setSearch, onOpenTitle }) {
     loadMediaCatalog().then(data => setItems(data)).finally(() => setLoading(false))
   }, [])
 
-  const matched = useMemo(
-    () => items.filter(i => matchesSearch(i, search)),
-    [items, search]
-  )
+  const matched = useMemo(() => {
+    const q = search.trim().toLowerCase()
+    if (!q) return []
+    return items
+      .map(i => ({ item: i, score: searchScore(i, q) }))
+      .filter(({ score }) => score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(({ item }) => item)
+  }, [items, search])
 
   const filtered = useMemo(() => {
     const base = typeTab === 'all' ? matched : matched.filter(i => i.content_type === typeTab)
     if (sort === 'title') return [...base].sort((a, b) => a.clean_title.localeCompare(b.clean_title))
     if (sort === 'year')  return [...base].sort((a, b) => Number(b.file_info.release_date || 0) - Number(a.file_info.release_date || 0))
-    return base
+    return base  // 'relevance' — already sorted by score from matched
   }, [matched, typeTab, sort])
 
   const typeCounts = useMemo(() => ({
