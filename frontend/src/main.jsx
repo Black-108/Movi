@@ -5,8 +5,11 @@ import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
 import { Dashboard } from './views/Dashboard'
 import { TroubleshootingPortal } from './views/TroubleshootingPortal'
+import { PrivacyPage, DisclaimerPage, DmcaPage, TermsPage } from './views/LegalPages'
 import { AdSocialBar } from './components/AdSocialBar'
 import './styles.css'
+
+const LEGAL_PAGES = { privacy: PrivacyPage, disclaimer: DisclaimerPage, dmca: DmcaPage, terms: TermsPage }
 
 function parseRoute() {
   const hash = window.location.hash.replace(/^#\/?/, '')
@@ -16,6 +19,7 @@ function parseRoute() {
   if (parts[0] === 'category' && parts[1]) return { page: 'category', category: parts[1] }
   if (['home', 'movies', 'series', 'anime'].includes(parts[0])) return { page: parts[0] }
   if (parts[0] === 'diagnostics') return { page: 'diagnostics' }
+  if (LEGAL_PAGES[parts[0]]) return { page: parts[0] }
   return { page: 'home' }
 }
 
@@ -50,9 +54,12 @@ function App() {
     <AppProvider>
       <AdSocialBar />
       <Nav route={route} setPage={setPage} search={search} setSearch={setSearch} />
-      {route.page === 'diagnostics'
-        ? <TroubleshootingPortal onBack={() => setPage('home')} />
-        : <Dashboard route={route} search={search} setSearch={setSearch} onOpenTitle={openTitle} onOpenCategory={openCategory} />}
+      {(() => {
+        if (route.page === 'diagnostics') return <TroubleshootingPortal onBack={() => setPage('home')} />
+        const LegalComp = LEGAL_PAGES[route.page]
+        if (LegalComp) return <LegalComp />
+        return <Dashboard route={route} search={search} setSearch={setSearch} onOpenTitle={openTitle} onOpenCategory={openCategory} />
+      })()}
       <Footer onDiagnostics={() => setPage('diagnostics')} />
     </AppProvider>
   )

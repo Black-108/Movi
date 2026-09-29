@@ -263,7 +263,6 @@ export function Dashboard({ route, search, setSearch, onOpenTitle, onOpenCategor
     return (
       <main className="page home-page">
         {error && <DataAlert text={error} />}
-        <AdSlot slot="SLOT_HOME_TOP" className="ad-home-top" />
 
         {/* ── Auto-scroll banner ── */}
         <HeroBanner items={modeFiltered} onOpenTitle={onOpenTitle} />
@@ -300,6 +299,8 @@ export function Dashboard({ route, search, setSearch, onOpenTitle, onOpenCategor
             </div>
           )}
         </section>
+
+        <AdSlot slot="SLOT_HOME_TOP" className="ad-home-top" />
 
         {/* ── Trending Now ── */}
         {!searchText && trendingItems.length > 0 && (
