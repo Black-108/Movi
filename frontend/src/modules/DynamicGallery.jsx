@@ -82,12 +82,22 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
       <section className="detail-section">
         <div className="section-label"><span className="eyebrow">Gallery</span><h2>Images &amp; screenshots</h2></div>
         <div className="gallery-large">
-          <div className="gallery-main">{images[active] && <img src={images[active]} alt={`${item.clean_title} screenshot ${active + 1}`} />}</div>
+          <div className="gallery-main">
+            {images[active] && (
+              <img
+                src={images[active]}
+                alt={`${item.clean_title} screenshot ${active + 1}`}
+                referrerPolicy="no-referrer"
+                crossOrigin="anonymous"
+                onError={e => { e.currentTarget.style.opacity = '0' }}
+              />
+            )}
+          </div>
           {images.length > 1 && (
             <div className="gallery-thumbs">
               {images.map((src, index) => (
                 <button key={`${src}-${index}`} className={active === index ? 'active' : ''} onClick={() => setActive(index)}>
-                  <img src={src} alt="" />
+                  <img src={src} alt="" referrerPolicy="no-referrer" crossOrigin="anonymous" onError={e => { e.currentTarget.style.opacity = '0' }} />
                 </button>
               ))}
             </div>
@@ -105,7 +115,7 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
           </div>
         </div>
         <div className="detail-section">
-          <div className="section-label"><span className="eyebrow">Files</span><h2>Available sizes</h2></div>
+          <div className="section-label"><span className="eyebrow">Format info</span><h2>Known resolutions</h2></div>
           <div className="chip-grid">
             {item.file_info.available_sizes.length
               ? item.file_info.available_sizes.map(size => <span className="info-chip mono-chip" key={size}>{size}</span>)
@@ -115,29 +125,29 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
       </section>
 
       <section className="detail-section">
-        <div className="section-label"><span className="eyebrow">Availability</span><h2>Download links</h2></div>
+        <div className="section-label"><span className="eyebrow">Where to Watch</span><h2>Streaming &amp; source links</h2></div>
         {item.downloads.length
           ? (
             <div className="source-grid">
               {item.downloads.map((download, index) => (
                 <div className="source-card" key={download.id}>
                   <div className="source-card-top">
-                    <span className="source-type">{download.is_direct_file ? 'Direct file' : 'External page'}</span>
+                    <span className="source-type">{download.is_direct_file ? 'Direct stream' : 'Streaming page'}</span>
                     <span className="source-index">{String(index + 1).padStart(2, '0')}</span>
                   </div>
                   <h3>{download.label || 'External source'}</h3>
-                  <p>Provided by the Movi.json dataset. Movi does not proxy or alter this destination.</p>
+                  <p>Movi is an index — we link to external sites and do not host, proxy, or alter any media.</p>
                   {download.link && (
                     <a className="primary-btn" href={download.link} target="_blank" rel="noreferrer noopener">
-                      Open source ↗
+                      Watch / Visit ↗
                     </a>
                   )}
                 </div>
               ))}
             </div>
           )
-          : <div className="empty-box">No external availability links were supplied for this title.</div>}
-        <p className="legal-callout">Use external sources only where you have the legal right to access, share, or download the referenced content.</p>
+          : <div className="empty-box">No streaming sources were found for this title in our index.</div>}
+        <p className="legal-callout">Movi is a discovery index. Always access content through channels you are legally permitted to use in your region.</p>
       </section>
 
       <AdNativeBanner className="ad-native-detail" />
