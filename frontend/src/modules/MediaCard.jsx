@@ -1,6 +1,10 @@
+import { useState } from 'react'
+import { ShareModal } from '../components/ShareModal'
+
 const TYPE_BADGE = { anime: '🎌', series: '📺', movie: '🎬' }
 
 export function MediaCard({ item, mode = 'grid', onSelect }) {
+  const [sharing, setSharing] = useState(false)
   const quality = item._qualityBadge || item.file_info.available_sizes?.at(-1)
   const collection = item.collections?.[0]
   const typeBadge = TYPE_BADGE[item.content_type] || ''
@@ -16,6 +20,16 @@ export function MediaCard({ item, mode = 'grid', onSelect }) {
         {typeBadge && <span className="type-badge">{typeBadge}</span>}
         {item.source_site_name && <span className="source-badge">{item.source_site_name}</span>}
         <span className="poster-overlay"><span>Details</span><b>→</b></span>
+        <button
+          className="card-share-btn"
+          onClick={e => { e.stopPropagation(); setSharing(true) }}
+          aria-label={`Share ${item.clean_title}`}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="14" height="14">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+            <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+          </svg>
+        </button>
       </div>
       <div className="card-body">
         <div className="eyebrow">{item.category}{item.file_info.release_date ? ` · ${item.file_info.release_date}` : ''}</div>
@@ -26,6 +40,7 @@ export function MediaCard({ item, mode = 'grid', onSelect }) {
           {item.file_info.language && <span>{item.file_info.language}</span>}
         </div>
       </div>
+      {sharing && <ShareModal item={item} onClose={() => setSharing(false)} />}
     </article>
   )
 }

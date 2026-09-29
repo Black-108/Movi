@@ -6,6 +6,7 @@ import { Footer } from './components/Footer'
 import { Dashboard } from './views/Dashboard'
 import { TroubleshootingPortal } from './views/TroubleshootingPortal'
 import { PrivacyPage, DisclaimerPage, DmcaPage, TermsPage } from './views/LegalPages'
+import { SearchPage } from './views/SearchPage'
 import { AdSocialBar } from './components/AdSocialBar'
 import './styles.css'
 
@@ -37,14 +38,19 @@ function App() {
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
 
+  const isSearching = search.trim().length > 0 &&
+    !['detail', 'diagnostics', ...Object.keys(LEGAL_PAGES)].includes(route.page)
+
   useEffect(() => {
     const labels = {
       home: 'Home', movies: 'Movies', series: 'Web Series', anime: 'Anime',
       detail: 'Details', category: 'Collection', diagnostics: 'Diagnostics',
     }
-    document.title = `Movi — ${labels[route.page] || 'Media Library'}`
+    document.title = isSearching
+      ? `Movi — Search: ${search}`
+      : `Movi — ${labels[route.page] || 'Media Library'}`
     window.scrollTo({ top: 0, behavior: 'auto' })
-  }, [route])
+  }, [route, isSearching, search])
 
   const setPage = page => go(page)
   const openCategory = id => go(`/category/${id}`)
@@ -58,6 +64,7 @@ function App() {
         if (route.page === 'diagnostics') return <TroubleshootingPortal onBack={() => setPage('home')} />
         const LegalComp = LEGAL_PAGES[route.page]
         if (LegalComp) return <LegalComp />
+        if (isSearching) return <SearchPage search={search} setSearch={setSearch} onOpenTitle={openTitle} />
         return <Dashboard route={route} search={search} setSearch={setSearch} onOpenTitle={openTitle} onOpenCategory={openCategory} />
       })()}
       <Footer onDiagnostics={() => setPage('diagnostics')} />

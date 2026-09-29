@@ -271,13 +271,17 @@ export function normalizeItem(raw, index) {
 
 // ── Catalog loader ────────────────────────────────────────────────────────────
 
+let _catalogCache = null
+
 export async function loadMediaCatalog() {
+  if (_catalogCache) return _catalogCache
   try {
     const response = await fetch('./Movi.json', { cache: 'no-store' })
     if (!response.ok) throw new Error(`Movi.json returned ${response.status}`)
     const data = await response.json()
     const list = Array.isArray(data) ? data : Array.isArray(data?.components) ? data.components : []
-    return list.map(normalizeItem).filter(item => item?.clean_title)
+    _catalogCache = list.map(normalizeItem).filter(item => item?.clean_title)
+    return _catalogCache
   } catch (error) {
     console.error('Unable to load Movi.json', error)
     return fallback
