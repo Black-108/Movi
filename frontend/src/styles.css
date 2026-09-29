@@ -245,6 +245,15 @@ h1 em,h2 em{font-style:italic;color:var(--accent)}
 .ad-mid{margin:20px auto}
 .ad-native,.ad-native-home{display:block;margin:24px auto;max-width:100%}
 
+/* ── In-Page Push floating ad ── */
+.ipp-wrap{position:fixed;bottom:20px;right:20px;z-index:8000;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.55);background:var(--surface);border:1px solid var(--line);animation:ipp-slide-in .35s cubic-bezier(.22,1,.36,1) both}
+@keyframes ipp-slide-in{from{transform:translateY(120%);opacity:0}to{transform:translateY(0);opacity:1}}
+.ipp-header{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:var(--surface2);border-bottom:1px solid var(--line)}
+.ipp-label{font:500 10px var(--mono);color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+.ipp-close{border:0;background:transparent;color:var(--muted);font-size:13px;padding:0 2px;line-height:1;cursor:pointer;transition:color .15s}
+.ipp-close:hover{color:var(--ink)}
+@media(max-width:480px){.ipp-wrap{display:none}}
+
 @media(max-width:760px){
   .cat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .horiz-card{width:110px}

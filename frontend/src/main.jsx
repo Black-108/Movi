@@ -8,6 +8,7 @@ import { TroubleshootingPortal } from './views/TroubleshootingPortal'
 import { PrivacyPage, DisclaimerPage, DmcaPage, TermsPage } from './views/LegalPages'
 import { SearchPage } from './views/SearchPage'
 import { AdSocialBar } from './components/AdSocialBar'
+import { AdInPagePush } from './components/AdInPagePush'
 import './styles.css'
 
 const LEGAL_PAGES = { privacy: PrivacyPage, disclaimer: DisclaimerPage, dmca: DmcaPage, terms: TermsPage }
@@ -59,6 +60,7 @@ function App() {
   return (
     <AppProvider>
       <AdSocialBar />
+      <AdInPagePush />
       <Nav route={route} setPage={setPage} search={search} setSearch={setSearch} />
       {(() => {
         if (route.page === 'diagnostics') return <TroubleshootingPortal onBack={() => setPage('home')} />
