@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { loadMediaCatalog, searchScore } from '../database/mediaCatalog'
+import { loadMediaCatalog, searchScore, charOverlapScore } from '../database/mediaCatalog'
 import { MediaCard } from '../modules/MediaCard'
 import { AdSlot } from '../components/AdSlot'
 import { AdNativeBanner } from '../components/AdNativeBanner'
@@ -27,38 +27,54 @@ export function SearchPage({ search, setSearch, onOpenTitle }) {
     loadMediaCatalog().then(data => setItems(data)).finally(() => setLoading(false))
   }, [])
 
-  const matched = useMemo(() => {
+  // Fuzzy search → fallback to character-overlap when zero fuzzy results
+  const { matchedItems, isFallback } = useMemo(() => {
     const q = search.trim().toLowerCase()
-    if (!q) return []
-    return items
+    if (!q) return { matchedItems: [], isFallback: false }
+
+    const fuzzy = items
       .map(i => ({ item: i, score: searchScore(i, q) }))
       .filter(({ score }) => score > 0)
       .sort((a, b) => b.score - a.score)
       .map(({ item }) => item)
+    if (fuzzy.length > 0) return { matchedItems: fuzzy, isFallback: false }
+
+    // Fallback: rank by character overlap (LCS) — always show something
+    if (q.length >= 2) {
+      const fb = items
+        .map(i => ({ item: i, score: charOverlapScore(q, i) }))
+        .filter(({ score }) => score >= 0.4)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 24)
+        .map(({ item }) => item)
+      if (fb.length > 0) return { matchedItems: fb, isFallback: true }
+    }
+
+    return { matchedItems: [], isFallback: false }
   }, [items, search])
 
   const filtered = useMemo(() => {
-    const base = typeTab === 'all' ? matched : matched.filter(i => i.content_type === typeTab)
+    const base = typeTab === 'all' ? matchedItems : matchedItems.filter(i => i.content_type === typeTab)
     if (sort === 'title') return [...base].sort((a, b) => a.clean_title.localeCompare(b.clean_title))
     if (sort === 'year')  return [...base].sort((a, b) => Number(b.file_info.release_date || 0) - Number(a.file_info.release_date || 0))
-    return base  // 'relevance' — already sorted by score from matched
-  }, [matched, typeTab, sort])
+    return base
+  }, [matchedItems, typeTab, sort])
 
   const typeCounts = useMemo(() => ({
-    all:    matched.length,
-    movie:  matched.filter(i => i.content_type === 'movie').length,
-    series: matched.filter(i => i.content_type === 'series').length,
-    anime:  matched.filter(i => i.content_type === 'anime').length,
-  }), [matched])
+    all:    matchedItems.length,
+    movie:  matchedItems.filter(i => i.content_type === 'movie').length,
+    series: matchedItems.filter(i => i.content_type === 'series').length,
+    anime:  matchedItems.filter(i => i.content_type === 'anime').length,
+  }), [matchedItems])
 
   const relatedTags = useMemo(() => {
     const freq = {}
-    matched.forEach(item => item.derivedTags?.forEach(t => { freq[t] = (freq[t] || 0) + 1 }))
+    matchedItems.forEach(item => item.derivedTags?.forEach(t => { freq[t] = (freq[t] || 0) + 1 }))
     return Object.entries(freq)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 20)
       .map(([t]) => t)
-  }, [matched])
+  }, [matchedItems])
 
   const shown = filtered.slice(0, visible)
   const hasMore = shown.length < filtered.length
@@ -68,14 +84,22 @@ export function SearchPage({ search, setSearch, onOpenTitle }) {
       <AdSlot slot="SLOT_HOME_TOP" className="ad-top" />
 
       <div className="search-page-head">
-        <span className="eyebrow">Search results</span>
+        <span className="eyebrow">{isFallback ? 'Closest matches' : 'Search results'}</span>
         <h1>Results for <em>"{search}"</em></h1>
         <p className="search-result-count">
           {loading
             ? 'Loading catalog…'
-            : `${filtered.length} title${filtered.length !== 1 ? 's' : ''} found`}
+            : isFallback
+              ? `No exact match — showing ${filtered.length} closest title${filtered.length !== 1 ? 's' : ''} by letter similarity`
+              : `${filtered.length} title${filtered.length !== 1 ? 's' : ''} found`}
         </p>
       </div>
+
+      {isFallback && (
+        <div className="search-fallback-notice">
+          <span>⚡ Tip: check spelling or try fewer words — showing titles with the most letters in common with your search.</span>
+        </div>
+      )}
 
       {relatedTags.length > 0 && (
         <div className="search-related">

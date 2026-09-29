@@ -252,6 +252,14 @@ export function normalizeItem(raw, index) {
     item.file_info.starcast.join(' '), item.tags.join(' '), item.source_site_name,
   ].join(' ').toLowerCase()
 
+  // Flat word list for fuzzy matching: title + cast names + year + genre
+  item._fuzzyWords = [
+    ...item.clean_title.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(' '),
+    String(item.file_info.release_date || ''),
+    ...item.file_info.starcast.flatMap(n => n.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(' ')),
+    ...item.file_info.genre.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(' '),
+  ].filter(w => w && w.length >= 2)
+
   item.collections = COLLECTION_RULES.filter(rule => rule.test(item)).map(rule => rule.id)
 
   // Ensure category-based items land in the right collection even without keyword match
@@ -375,7 +383,8 @@ export function searchScore(item, query) {
   const qWords = q.split(' ').filter(w => w.length >= 2)
   if (qWords.length === 0) return item._searchText.includes(q[0]) ? 50 : 0
 
-  const titleWords = normQ(item.clean_title).split(' ').filter(Boolean)
+  // Extended word set: title + cast + year + genre (pre-built on item)
+  const fuzzyWords = item._fuzzyWords || normQ(item.clean_title).split(' ').filter(Boolean)
 
   let totalScore = 0
   let totalWeight = 0
@@ -385,15 +394,15 @@ export function searchScore(item, query) {
     const w = qw.length
     totalWeight += w
 
-    // Tier 2 – exact token anywhere in search blob
+    // Tier 2 – exact token anywhere in full search blob (year, cast, genre, language…)
     if (item._searchText.includes(qw)) {
       totalScore += w * 88
       hits++
       continue
     }
 
-    // Tier 3 – fuzzy against title words only
-    const s = wordScore(qw, titleWords)
+    // Tier 3 – fuzzy against title + cast + year + genre words
+    const s = wordScore(qw, fuzzyWords)
     if (s > 0) hits++
     totalScore += w * s
   }
@@ -410,6 +419,35 @@ export function searchScore(item, query) {
 export function matchesSearch(item, search) {
   const q = clean(search).toLowerCase()
   return !q || searchScore(item, q) > 0
+}
+
+// ── Character-overlap fallback (LCS) ─────────────────────────────────────────
+// Used when fuzzy search yields zero results — ranks by how many characters
+// from the query appear in order inside the title.
+
+function lcsLen(a, b) {
+  if (!a.length || !b.length) return 0
+  let prev = new Uint16Array(b.length + 1)
+  let curr = new Uint16Array(b.length + 1)
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      curr[j] = a[i - 1] === b[j - 1] ? prev[j - 1] + 1 : Math.max(prev[j], curr[j - 1])
+    }
+    ;[prev, curr] = [curr, prev]
+    curr.fill(0)
+  }
+  return prev[b.length]
+}
+
+/**
+ * Returns 0–1: fraction of query letters found (in order) inside the title.
+ * Spaces are stripped so "drk nght" still scores well against "dark knight".
+ */
+export function charOverlapScore(query, item) {
+  const q = query.toLowerCase().replace(/\s+/g, '')
+  const title = item.clean_title.toLowerCase().replace(/[^a-z0-9]/g, '')
+  if (!q || !title) return 0
+  return lcsLen(q, title) / q.length
 }
 
 export function filterByContentMode(items, mode) {
