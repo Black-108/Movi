@@ -127,7 +127,12 @@ export function SearchPage({ search, setSearch, onOpenTitle }) {
         <>
           <div className={`catalog-grid ${view}`}>
             {shown.map(item => (
-              <MediaCard key={item.id} item={item} mode={view} onSelect={onOpenTitle} />
+              <MediaCard
+                key={item.id}
+                item={item}
+                mode={view}
+                onSelect={id => { setSearch(''); onOpenTitle(id) }}
+              />
             ))}
           </div>
 
