@@ -1,27 +1,27 @@
 import { useEffect, useRef } from 'react'
 import { NATIVE_BANNER } from '../config/ads'
 
+let injected = false // inject the script only once per page load
+
 export function AdNativeBanner({ className = '' }) {
-  const ref = useRef(null)
+  const divRef = useRef(null)
 
   useEffect(() => {
-    if (!ref.current || !NATIVE_BANNER.src) return
-    if (document.querySelector(`script[src="${NATIVE_BANNER.src}"]`)) return
+    if (!NATIVE_BANNER.src || injected) return
+    injected = true
 
     const s = document.createElement('script')
     s.async = true
     s.setAttribute('data-cfasync', 'false')
     s.src = NATIVE_BANNER.src
-    ref.current.appendChild(s)
-
-    return () => { if (s.parentNode) s.parentNode.removeChild(s) }
+    document.head.appendChild(s)
   }, [])
 
   if (!NATIVE_BANNER.src) return null
 
   return (
     <div className={`ad-native ${className}`}>
-      <div id={NATIVE_BANNER.containerId} ref={ref} />
+      <div id={NATIVE_BANNER.containerId} ref={divRef} />
     </div>
   )
 }

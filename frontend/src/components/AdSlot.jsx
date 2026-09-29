@@ -1,36 +1,20 @@
-import { useEffect, useRef } from 'react'
 import { AD_SLOTS, AD_CDN } from '../config/ads'
 
 function isMobile() {
   return typeof window !== 'undefined' && window.innerWidth <= 728
 }
 
+/**
+ * Each ad slot renders in its own sandboxed iframe so atOptions configs
+ * never interfere with each other on the same page.
+ */
 export function AdSlot({ slot, className = '' }) {
-  const container = useRef(null)
   const cfg = AD_SLOTS[slot]
-
   const mobile = isMobile()
-  // Use mobile key+size when on phone AND the slot has a mobile variant
+
   const key    = (mobile && cfg?.mkey) ? cfg.mkey : cfg?.key ?? ''
   const width  = (mobile && cfg?.mw)   ? cfg.mw   : cfg?.w ?? 728
   const height = (mobile && cfg?.mh)   ? cfg.mh   : cfg?.h ?? 90
-
-  useEffect(() => {
-    if (!key || !container.current) return
-    container.current.innerHTML = ''
-
-    const optScript = document.createElement('script')
-    optScript.type = 'text/javascript'
-    optScript.text = `atOptions = { 'key': '${key}', 'format': 'iframe', 'height': ${height}, 'width': ${width}, 'params': {} };`
-    container.current.appendChild(optScript)
-
-    const loaderScript = document.createElement('script')
-    loaderScript.type = 'text/javascript'
-    loaderScript.src  = `//${AD_CDN}/${key}/invoke.js`
-    container.current.appendChild(loaderScript)
-
-    return () => { if (container.current) container.current.innerHTML = '' }
-  }, [key, width, height])
 
   if (!key) {
     return (
@@ -42,11 +26,20 @@ export function AdSlot({ slot, className = '' }) {
     )
   }
 
+  // Inline HTML written into a srcdoc iframe — each slot is fully isolated
+  const srcdoc = `<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;overflow:hidden"><script>atOptions={'key':'${key}','format':'iframe','height':${height},'width':${width},'params':{}}<\/script><script src="//${AD_CDN}/${key}/invoke.js"><\/script></body></html>`
+
   return (
-    <div
-      ref={container}
-      className={`ad-slot ${className}`}
-      style={{ width, height, overflow: 'hidden', display: 'block' }}
-    />
+    <div className={`ad-slot ${className}`} style={{ width, maxWidth: '100%', margin: '0 auto' }}>
+      <iframe
+        srcDoc={srcdoc}
+        width={width}
+        height={height}
+        frameBorder="0"
+        scrolling="no"
+        style={{ display: 'block', border: 'none' }}
+        title="Advertisement"
+      />
+    </div>
   )
 }

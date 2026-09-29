@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { MediaCard } from './MediaCard'
 import { Player } from './Player'
 import { AdSlot } from '../components/AdSlot'
+import { AdNativeBanner } from '../components/AdNativeBanner'
 import { shuffle } from '../database/mediaCatalog'
 
 function Tag({ children }) {
@@ -35,7 +36,7 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
         {search && <button onClick={() => setSearch('')} aria-label="Clear search">×</button>}
       </div>
 
-      <AdSlot slot="SLOT_TOP_DETAIL" style="leaderboard" className="ad-top" />
+      <AdSlot slot="SLOT_TOP_DETAIL" className="ad-top" />
 
       <section className="detail-hero">
         <div className="detail-poster">
@@ -139,7 +140,9 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
         <p className="legal-callout">Use external sources only where you have the legal right to access, share, or download the referenced content.</p>
       </section>
 
-      <AdSlot slot="SLOT_BOTTOM_DETAIL" style="leaderboard" className="ad-bottom" />
+      <AdNativeBanner className="ad-native-detail" />
+
+      <AdSlot slot="SLOT_BOTTOM_DETAIL" className="ad-bottom" />
 
       <section className="detail-section">
         <div className="section-label"><span className="eyebrow">Suggestions</span><h2>More like this</h2></div>

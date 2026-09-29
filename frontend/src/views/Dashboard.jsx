@@ -251,7 +251,9 @@ export function Dashboard({ route, search, setSearch, onOpenTitle, onOpenCategor
         <div className={`catalog-grid ${view}`}>
           {shown.map(item => <MediaCard key={item.id} item={item} mode={view} onSelect={onOpenTitle} />)}
         </div>
+        <AdNativeBanner className="ad-native-category" />
         <LoadMore shown={shown.length} total={collectionResults.length} visible={visible} setVisible={setVisible} max={collectionResults.length} />
+        <AdSlot slot="SLOT_CATEGORY_TOP" className="ad-home-bottom" />
       </main>
     )
   }
@@ -261,7 +263,7 @@ export function Dashboard({ route, search, setSearch, onOpenTitle, onOpenCategor
     return (
       <main className="page home-page">
         {error && <DataAlert text={error} />}
-        <AdSlot slot="SLOT_HOME_TOP" style="leaderboard" className="ad-home-top" />
+        <AdSlot slot="SLOT_HOME_TOP" className="ad-home-top" />
 
         {/* ── Auto-scroll banner ── */}
         <HeroBanner items={modeFiltered} onOpenTitle={onOpenTitle} />
@@ -367,7 +369,7 @@ export function Dashboard({ route, search, setSearch, onOpenTitle, onOpenCategor
           </section>
         )}
 
-        <AdSlot slot="SLOT_HOME_BOTTOM" style="leaderboard" className="ad-home-bottom" />
+        <AdSlot slot="SLOT_HOME_BOTTOM" className="ad-home-bottom" />
       </main>
     )
   }
@@ -377,7 +379,7 @@ export function Dashboard({ route, search, setSearch, onOpenTitle, onOpenCategor
   return (
     <main className="page">
       {error && <DataAlert text={error} />}
-      <AdSlot slot="SLOT_LIBRARY_TOP" style="leaderboard" className="ad-top" />
+      <AdSlot slot="SLOT_LIBRARY_TOP" className="ad-top" />
       <section className="library-head">
         <div>
           <span className="eyebrow">{pageInfo.eyebrow}</span>
@@ -390,7 +392,9 @@ export function Dashboard({ route, search, setSearch, onOpenTitle, onOpenCategor
       <div className={`catalog-grid ${view}`}>
         {shown.map(item => <MediaCard key={item.id} item={item} mode={view} onSelect={onOpenTitle} />)}
       </div>
+      <AdSlot slot="SLOT_HOME_MID" className="ad-infeed" />
       <LoadMore shown={shown.length} total={libraryResults.length} visible={visible} setVisible={setVisible} max={libraryResults.length} />
+      <AdSlot slot="SLOT_HOME_BOTTOM" className="ad-home-bottom" />
     </main>
   )
 }
