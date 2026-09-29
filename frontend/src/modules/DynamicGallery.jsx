@@ -88,7 +88,6 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
                 src={images[active]}
                 alt={`${item.clean_title} screenshot ${active + 1}`}
                 referrerPolicy="no-referrer"
-                crossOrigin="anonymous"
                 onError={e => { e.currentTarget.style.opacity = '0' }}
               />
             )}
@@ -97,7 +96,7 @@ export function DetailPage({ item, allItems, onOpenTitle, onOpenCategory, search
             <div className="gallery-thumbs">
               {images.map((src, index) => (
                 <button key={`${src}-${index}`} className={active === index ? 'active' : ''} onClick={() => setActive(index)}>
-                  <img src={src} alt="" referrerPolicy="no-referrer" crossOrigin="anonymous" onError={e => { e.currentTarget.style.opacity = '0' }} />
+                  <img src={src} alt="" referrerPolicy="no-referrer" onError={e => { e.currentTarget.style.opacity = '0' }} />
                 </button>
               ))}
             </div>

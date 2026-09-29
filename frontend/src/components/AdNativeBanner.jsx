@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { NATIVE_BANNER } from '../config/ads'
 
-let injected = false // inject the script only once per page load
+let injected = false
 
 export function AdNativeBanner({ className = '' }) {
   const divRef = useRef(null)
